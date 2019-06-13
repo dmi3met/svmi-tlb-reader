@@ -42,6 +42,7 @@ for offset in range(0, len(data)-record_len, record_len):
 
 with open('message.csv', 'w', newline='') as f:
     fieldnames = ['time', 'filename', 'number_a', 'number_b']
-    writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter=';')
+    writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter=';',
+                            quotechar="'", quoting=csv.QUOTE_ALL)
     writer.writeheader()
     writer.writerows(parsed_rows)
