@@ -34,7 +34,7 @@ for offset in range(0, len(data)-record_len, record_len):
 
     time1 = time.strftime("%d.%m.%Y %H:%M:%S", time.localtime(time1))
     # for date correction 2 years (time1-63072000)
-    filename = '%08X' % filename
+    filename = "'%08X" % filename
     number_a = safe_decode(number_a)
     number_b = safe_decode(number_b)
     parsed_rows.append({'time': time1, 'filename': filename,
@@ -42,7 +42,6 @@ for offset in range(0, len(data)-record_len, record_len):
 
 with open('message.csv', 'w', newline='') as f:
     fieldnames = ['time', 'filename', 'number_a', 'number_b']
-    writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter=';',
-                            quotechar="'", quoting=csv.QUOTE_ALL)
+    writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter=';')
     writer.writeheader()
     writer.writerows(parsed_rows)
